@@ -1,0 +1,7 @@
+title: nv-tech-notes
+author: Nataliia Vakhovska
+description: "A developer blog of practical notes and technical insights."
+baseurl: ""
+url: "https://nvakhovska.github.io"
+theme: minima
+markdown: kramdown
