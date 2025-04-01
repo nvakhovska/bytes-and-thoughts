@@ -1,0 +1,99 @@
+:root {
+  --bg-color: #f9f9f9;
+}
+
+.dark {
+  --bg-color: #1a1a1a;
+}
+
+.blog-home-container {
+  padding: 1rem;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+/* Blog page title */
+.blog-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: var(--color-secondary);
+}
+
+/* Layout for post cards */
+.blog-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Blog post card */
+.blog-card {
+  background-color: #ffffff; /* Light theme card background */
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(225, 160, 20, 0.2); /* Always-visible golden glow */
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px); /* Slight lift on hover */
+}
+
+.dark .blog-card {
+  background-color: #474141; /* Dark theme card background (lighter than page bg) */
+  box-shadow: 0 4px 16px rgba(225, 160, 20, 0.3); /* Brighter golden glow in dark mode */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Card inner content */
+.blog-card-content {
+  padding: 1.5rem;
+}
+
+/* Post title */
+.blog-post-title {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Post date */
+.blog-post-date {
+  font-size: 0.875rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+/* Excerpt */
+.blog-post-excerpt {
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+/* Button link to full post */
+.blog-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: 8px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.blog-button:hover {
+  background-color: var(--color-secondary);
+  color: var(--bg-color);
+  border-color: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+.blog-button:active {
+  transform: scale(0.97);
+}

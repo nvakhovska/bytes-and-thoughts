@@ -1,0 +1,48 @@
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.btn:hover {
+  background-color: hsla(
+    var(--color-primary-h),
+    var(--color-primary-s),
+    90%,
+    0.2
+  );
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-outline {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+  background-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn-outline {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .btn:hover {
+    background-color: hsla(
+      var(--color-primary-h),
+      var(--color-primary-s),
+      60%,
+      0.1
+    );
+  }
+}

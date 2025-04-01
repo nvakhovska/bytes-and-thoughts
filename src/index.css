@@ -1,0 +1,110 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Color system */
+:root {
+  --color-primary-h: 39;
+  --color-primary-s: 85%;
+  --color-primary-l: 55%;
+
+  --color-primary: hsl(
+    var(--color-primary-h),
+    var(--color-primary-s),
+    var(--color-primary-l)
+  );
+  --color-secondary: hsl(var(--color-primary-h), var(--color-primary-s), 35%);
+
+  --bg-color: #f9f9f9;
+  --text-color: #222;
+}
+
+.dark {
+  --color-primary-l: 60%;
+  --color-secondary: hsl(var(--color-primary-h), var(--color-primary-s), 75%);
+
+  --bg-color: #1a1a1a;
+  --text-color: #eee;
+}
+
+/* Global styles */
+body {
+  font-family: "Fira Sans", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 1rem;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--color-primary);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: var(--color-secondary);
+  color: var(--bg-color);
+  border-color: var(--color-secondary);
+}
+
+.container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Code block styling */
+code {
+  background: #eee;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre code {
+  display: block;
+  padding: 1rem;
+  background: #f0f0f0;
+  overflow-x: auto;
+  border-radius: 8px;
+}
