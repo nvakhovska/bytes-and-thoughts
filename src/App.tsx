@@ -6,18 +6,16 @@ import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
-    <>
+    <BrowserRouter basename="/bytes-and-thoughts">
       <Navbar />
-      <BrowserRouter basename="/bytes-and-thoughts">
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<BlogHome />} />
-            <Route path="/blog/:slug" element={<BlogPostPage />} />
-          </Routes>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<BlogHome />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
