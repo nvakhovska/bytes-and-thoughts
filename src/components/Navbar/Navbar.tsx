@@ -37,7 +37,7 @@ const Navbar = () => {
         <ul className="nav__list">
           <li className="nav__list-item">
             <a
-              href="/"
+              href={`${import.meta.env.BASE_URL}`}
               className="link link--nav"
               onClick={() => setShowNavList(false)}
             >
