@@ -6,6 +6,7 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 import { useTheme } from "../../hooks/useTheme";
 import "./navBar.css";
@@ -36,13 +37,13 @@ const Navbar = () => {
       {(showNavList || !isMobile) && (
         <ul className="nav__list">
           <li className="nav__list-item">
-            <a
-              href={`${import.meta.env.BASE_URL}`}
+            <Link
+              to="/"
               className="link link--nav"
               onClick={() => setShowNavList(false)}
             >
               Blog
-            </a>
+            </Link>
           </li>
         </ul>
       )}
