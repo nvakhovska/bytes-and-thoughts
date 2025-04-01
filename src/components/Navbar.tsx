@@ -6,20 +6,36 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
 import "../assets/styles/navBar.css";
 
-const Navbar = () => {
+interface NavbarProps {
+  searchQuery: string;
+  onSearchQueryChange: (query: string) => void;
+  categories: string[];
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({
+  searchQuery,
+  onSearchQueryChange,
+  categories,
+  selectedCategory,
+  onCategoryChange,
+}) => {
   const { theme, setTheme } = useTheme();
   const [showNavList, setShowNavList] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation();
 
+  // Toggle between light and dark theme
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  // Toggle mobile nav visibility
   const toggleNavList = () => setShowNavList((prev) => !prev);
 
   useEffect(() => {
@@ -34,12 +50,38 @@ const Navbar = () => {
 
   return (
     <nav className="center nav">
+      {/* Category filter dropdown (only shown on homepage) */}
+      {location.pathname === "/" && (
+        <div className="nav__controls">
+          <input
+            type="text"
+            placeholder="Search posts..."
+            value={searchQuery}
+            onChange={(e) => onSearchQueryChange(e.target.value)}
+            className="blog-search-input"
+          />
+
+          <select
+            value={selectedCategory}
+            onChange={(e) => onCategoryChange(e.target.value)}
+            className="category-dropdown"
+          >
+            <option value="">All Categories</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {/* Main nav links */}
       {(showNavList || !isMobile) && (
         <ul className="nav__list">
           <li className="nav__list-item">
             <Link
               to="/"
-              replace
               className="link link--nav"
               onClick={() => setShowNavList(false)}
             >
@@ -49,6 +91,7 @@ const Navbar = () => {
         </ul>
       )}
 
+      {/* Theme toggle button */}
       <button
         className="btn btn--icon nav__theme"
         type="button"
@@ -61,6 +104,7 @@ const Navbar = () => {
         />
       </button>
 
+      {/* Mobile menu toggle */}
       {isMobile && (
         <button
           className="btn btn--icon nav__hamburger"

@@ -5,7 +5,32 @@
   padding: 1rem;
 }
 
-/* Show list horizontally on desktop */
+.nav__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 1rem;
+}
+
+.blog-search-input,
+.category-dropdown {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-secondary);
+  border-radius: 8px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.category-dropdown:focus,
+.blog-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px
+    hsla(var(--color-primary-h), var(--color-primary-s), 60%, 0.3);
+}
+
 .nav__list {
   display: flex;
   margin-right: 1.5em;
@@ -13,24 +38,19 @@
   list-style: none;
 }
 
-/* List items */
 .nav__list-item {
   font-weight: 600;
 }
 
-/* Theme toggle button */
 .nav__theme {
   margin-left: auto;
 }
 
-/* Hamburger hidden by default */
 .nav__hamburger {
   display: none;
 }
 
-/* ---------- MOBILE STYLES ---------- */
 @media screen and (max-width: 768px) {
-  /* Hidden by default, shown via inline style from React */
   .nav__list {
     display: flex;
     flex-direction: column;
@@ -48,7 +68,6 @@
     font-size: 1.5rem;
   }
 
-  /* Show hamburger */
   .nav__hamburger {
     display: flex;
     align-items: center;
