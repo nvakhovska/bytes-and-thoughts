@@ -39,6 +39,7 @@ const Navbar = () => {
           <li className="nav__list-item">
             <Link
               to="/"
+              replace
               className="link link--nav"
               onClick={() => setShowNavList(false)}
             >
