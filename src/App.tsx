@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlogHome from "./pages/BlogHome";
 import BlogPostPage from "./pages/BlogPostPage";
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (

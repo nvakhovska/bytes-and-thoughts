@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
-import "./BlogPostPage.css";
+import "../assets/styles/BlogPostPage.css";
 
 export default function BlogPostPage() {
   const { slug } = useParams();

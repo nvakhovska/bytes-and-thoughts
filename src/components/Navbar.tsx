@@ -8,8 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-import { useTheme } from "../../hooks/useTheme";
-import "./navBar.css";
+import { useTheme } from "../hooks/useTheme";
+import "../assets/styles/navBar.css";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();

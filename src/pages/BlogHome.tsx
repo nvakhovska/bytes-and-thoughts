@@ -1,45 +1,28 @@
-import { useEffect, useState } from "react";
+import { JSX, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import fm from "front-matter";
-import "./BlogHome.css";
-
-interface BlogPostMeta {
-  title: string;
-  date: string;
-  slug: string;
-  excerpt: string;
-}
+import { useFetchPosts } from "../hooks/useFetchPosts";
+import { CategoryFilter } from "../components/CategoryFilter";
+import { SearchBar } from "../components/SearchBar";
+import "../assets/styles/BlogHome.css";
+import { highlightText } from "@/utils/highlightText";
 
 export default function BlogHome() {
-  const [posts, setPosts] = useState<BlogPostMeta[]>([]);
+  const posts = useFetchPosts();
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const postSlugs = ["jwt-in-practice", "oauth-2-flow"];
-      const results = await Promise.all(
-        postSlugs.map(async (slug) => {
-          const res = await fetch(
-            `${import.meta.env.BASE_URL}posts/${slug}.md`
-          );
-          const raw = await res.text();
-          const { attributes: data, body: content } = fm<{
-            title: string;
-            date: string;
-          }>(raw);
+  const categories = Array.from(new Set(posts.map((post) => post.category)));
 
-          return {
-            title: data.title,
-            date: data.date,
-            slug,
-            excerpt: content.substring(0, 140) + "...",
-          };
-        })
-      );
-      setPosts(results);
-    };
-    fetchPosts();
-  }, []);
+  const filteredPosts = posts.filter((post) => {
+    const matchesCategory =
+      selectedCategory === "" || post.category === selectedCategory;
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <motion.div
@@ -49,27 +32,47 @@ export default function BlogHome() {
       transition={{ duration: 0.6 }}
     >
       <h1 className="blog-title">Blog</h1>
+
+      <CategoryFilter
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+      />
+      <SearchBar
+        searchQuery={searchQuery}
+        onSearchQueryChange={setSearchQuery}
+      />
+
       <div className="blog-grid">
-        {posts.map((post) => (
-          <div key={post.slug} className="blog-card">
-            <div className="blog-card-content">
-              <h2 className="blog-post-title">
-                <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-              </h2>
-              <p className="blog-post-date">
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </p>
-              <p className="blog-post-excerpt">{post.excerpt}</p>
-              <Link to={`/blog/${post.slug}`} className="blog-button">
-                Read More
-              </Link>
+        {filteredPosts.length === 0 ? (
+          <p>No posts found matching your query.</p>
+        ) : (
+          filteredPosts.map((post) => (
+            <div key={post.slug} className="blog-card">
+              <div className="blog-card-content">
+                <h2 className="blog-post-title">
+                  <Link to={`/blog/${post.slug}`}>
+                    {highlightText(post.title, searchQuery)}
+                  </Link>
+                </h2>
+                <p className="blog-post-date">
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </p>
+                <p className="blog-post-excerpt">
+                  {highlightText(post.excerpt, searchQuery)}
+                </p>
+
+                <Link to={`/blog/${post.slug}`} className="blog-button">
+                  Read More
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </motion.div>
   );

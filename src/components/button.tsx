@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import "./button.css";
+import "../assets/styles/button.css";
 
 export function Button({
   children,
