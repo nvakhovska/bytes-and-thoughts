@@ -4,6 +4,7 @@ import path from "path";
 
 export default defineConfig({
   base: "/bytes-and-thoughts/",
+  publicDir: "public",
   plugins: [react()],
   resolve: {
     alias: {
