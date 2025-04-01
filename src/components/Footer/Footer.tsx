@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-// Styles
 import "./footer.css";
 
 const Footer = () => {
@@ -14,9 +13,12 @@ const Footer = () => {
         rel="noreferrer"
         aria-label="Visit nvakhovska Github (opens in a new window)"
       >
+        <FontAwesomeIcon icon={faHeart} className="heart__icon" />
         Created by Nataliia Vakhovska
+        <FontAwesomeIcon icon={faHeart} className="heart__icon" />
       </a>
     </footer>
   );
 };
+
 export default Footer;

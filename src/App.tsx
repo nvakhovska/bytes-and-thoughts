@@ -1,19 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlogHome from "./pages/BlogHome";
 import BlogPostPage from "./pages/BlogPostPage";
-import ThemeToggle from "./components/ThemeToggle";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
-    <BrowserRouter basename="/bytes-and-thoughts">
-      <div className="container">
-        <ThemeToggle />
-        <Routes>
-          <Route path="/" element={<BlogHome />} />
-          <Route path="/blog/:slug" element={<BlogPostPage />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <>
+      <Navbar />
+      <BrowserRouter basename="/bytes-and-thoughts">
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<BlogHome />} />
+            <Route path="/blog/:slug" element={<BlogPostPage />} />
+          </Routes>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </>
   );
 }
 
