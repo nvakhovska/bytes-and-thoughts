@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import fm from "front-matter";
+import { stripMarkdown } from "@/utils/stripMarkdown";
 
 interface BlogPostMeta {
   title: string;
@@ -14,7 +15,7 @@ export function useFetchPosts() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const postSlugs = ["jwt-in-practice", "oauth-2-flow"];
+      const postSlugs = ["solid", "jwt-in-practice", "oauth-2-flow"];
       const results = await Promise.all(
         postSlugs.map(async (slug) => {
           const res = await fetch(
@@ -25,6 +26,7 @@ export function useFetchPosts() {
             title: string;
             date: string;
             category: string;
+            excerpt?: string;
           }>(raw);
 
           return {
@@ -32,7 +34,8 @@ export function useFetchPosts() {
             date: data.date,
             slug,
             category: data.category,
-            excerpt: content.substring(0, 140) + "...",
+            excerpt: stripMarkdown(content).substring(0, 140) + "...",
+            content: content,
           };
         })
       );

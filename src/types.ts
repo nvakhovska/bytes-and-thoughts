@@ -4,6 +4,7 @@ export interface BlogPostMeta {
   slug: string;
   excerpt: string;
   category: string;
+  content: string;
 }
 
 export interface BlogPost extends BlogPostMeta {
