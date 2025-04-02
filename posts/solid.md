@@ -1,6 +1,6 @@
 ---
 title: SOLID in Simple Words
-date: 2025-04-01
+date: 2025-04-02
 category: "Software Design"
 ---
 
@@ -18,16 +18,16 @@ A class (or function) should do only one action.
 
 **Bad:**
 
-\`\`\`ts
+```ts
 class UserService {
-createUser() {...}
-sendWelcomeEmail() {...} // not his business!
+  createUser() {...}
+  sendWelcomeEmail() {...} // not his business!
 }
-\`\`\`
+```
 
 **Good:**
 
-\`\`\`ts
+```ts
 class UserService {
 createUser() {...}
 }
@@ -35,7 +35,7 @@ createUser() {...}
 class EmailService {
 sendWelcomeEmail() {...}
 }
-\`\`\`
+```
 
 ---
 
